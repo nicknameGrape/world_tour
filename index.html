@@ -1,0 +1,56 @@
+<head>
+<!-- for optimal display on high DPI devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css" />
+	<style>
+body {
+	margin: 0px;
+}
+button {
+	background: skyblue;
+}
+.flagImage {
+	width: 5vw;
+	height: 10vh;
+	object-fit: contain;
+}
+#flags {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	z-index: 1;
+	position: absolute;
+}
+	</style>
+</head>
+
+<!-- the viewer container must have a defined size -->
+<div id="flags">
+	<button id="button_usa">
+		<img src="img/us.png" class="flagImage"/><br>the U.S.A.
+	</button>
+	<button id="button_japan">
+		<img src="img/jp.png" class="flagImage"/><br>Japan
+	</button>
+</div>
+<div id="viewer_usa" style="width: 100vw; height: 100vh;"></div>
+
+<script type="importmap">
+{
+	"imports": {
+		"three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
+			"@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js"
+	}
+}
+</script>
+
+<script type="module">
+import { Viewer } from '@photo-sphere-viewer/core';
+
+const viewer = new Viewer({
+container: document.querySelector('#viewer_usa'),
+panorama: 'img/360_usa.jpg',
+});
+</script>
+
