@@ -1,3 +1,4 @@
+<!doctype html>
 <head>
 <!-- for optimal display on high DPI devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,19 +23,59 @@ button {
 	z-index: 1;
 	position: absolute;
 }
+#viewer {
+}
 	</style>
 </head>
 
 <!-- the viewer container must have a defined size -->
 <div id="flags">
-	<button id="button_usa">
+	<button id="button_usa" value="us">
 		<img src="img/us.png" class="flagImage"/><br>the U.S.A.
 	</button>
-	<button id="button_japan">
+	<button id="button_brazil" value="br">
+		<img src="./img/br.png" class="flagImage"/><br>Brazil
+	</button>
+	<button id="button_gb" value="gb">
+		<img src="./img/gb.png" class="flagImage"/><br>the U.K.
+	</button>
+	<button id="button_france" value="fr">
+		<img src="./img/fr.png" class="flagImage"/><br>France
+	</button>
+	<button id="button_japan" value="jp">
 		<img src="img/jp.png" class="flagImage"/><br>Japan
 	</button>
+	<!--
+	<button id="button_australia">
+		<img src="./img/au.png" value="au" class="flagImage"/><br>Australia
+	</button>
+	<button id="button_switzerland">
+		<img src="./img/ch.png" value="ch" class="flagImage"/><br>Switzerland
+	</button>
+	<button id="button_china">
+		<img src="./img/cn.png" value="cn" class="flagImage"/><br>China
+	</button>
+	<button id="button_germany">
+		<img src="./img/de.png" value="de" class="flagImage"/><br>Germany
+	</button>
+	<button id="button_egypt">
+		<img src="./img/eg.png" value="eg" class="flagImage"/><br>Egypt
+	</button>
+	<button id="button_india">
+		<img src="./img/in.png" value="in" class="flagImage"/><br>India
+	</button>
+	<button id="button_italy">
+		<img src="./img/it.png" value="it" class="flagImage"/><br>Italy
+	</button>
+	<button id="button_kenya">
+		<img src="./img/ke.png" value="ke" class="flagImage"/><br>Kenya
+	</button>
+	<button id="button_korea">
+		<img src="./img/kr.png" value="kr" class="flagImage"/><br>Korea
+	</button>
+	-->
 </div>
-<div id="viewer_usa" style="width: 100vw; height: 100vh;"></div>
+<div id="viewer" style="width: 100vw; height: 100vh;" class="viewer"></div>
 
 <script type="importmap">
 {
@@ -47,10 +88,17 @@ button {
 
 <script type="module">
 import { Viewer } from '@photo-sphere-viewer/core';
-
 const viewer = new Viewer({
-container: document.querySelector('#viewer_usa'),
-panorama: 'img/360_usa.jpg',
+	container: document.querySelector('#viewer'),
+	panorama: 'img/360_us.jpg',
+});
+
+let viewers = {};
+Array.from(document.getElementsByTagName("button")).forEach(function (b) {
+	console.log(b.value);
+	b.addEventListener("click", function (ev) {
+		viewer.setPanorama('img/360_'+b.value+'.jpg', {"position": {"pitch": 0, "yaw": 0}});
+	});
 });
 </script>
 
