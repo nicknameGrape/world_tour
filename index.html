@@ -89,13 +89,25 @@ import { Viewer } from '@photo-sphere-viewer/core';
 const viewer = new Viewer({
 	container: document.querySelector('#viewer'),
 	panorama: 'img/360_us.jpg',
+	navbar: [
+		"zoomRange"
+	]
 });
 
 let viewers = {};
 Array.from(document.getElementsByTagName("button")).forEach(function (b) {
 	console.log(b.value);
 	b.addEventListener("click", function (ev) {
-		viewer.setPanorama('img/360_'+b.value+'.jpg', {"position": {"pitch": 0, "yaw": 0}});
+		console.log(viewer.config);
+		if (b.value === "fr") {
+			viewer.setPanorama('img/360_'+b.value+'.jpg', {"position": {"pitch": Math.PI*.16, "yaw": Math.PI/2}, "zoom": 30});
+		} else if (b.value === "gb") {
+			viewer.setPanorama('img/360_'+b.value+'.jpg', {"position": {"pitch": Math.PI*.18, "yaw": 0}, "zoom": 50});
+		} else if (b.value === "kr") {
+			viewer.setPanorama('img/360_'+b.value+'.jpg', {"position": {"pitch": Math.PI*.25, "yaw": Math.PI*1.45}, "zoom": 50});
+		} else {
+			viewer.setPanorama('img/360_'+b.value+'.jpg', {"position": {"pitch": 0, "yaw": 0}, "zoom": 70});
+		}
 	});
 });
 </script>
