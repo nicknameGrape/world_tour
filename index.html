@@ -8,8 +8,11 @@
 body {
 	margin: 0px;
 }
-button {
+input {
 	background: skyblue;
+}
+input:checked {
+	background: yellow;
 }
 .flagImage {
 	width: 5vw;
@@ -30,48 +33,48 @@ button {
 
 <!-- the viewer container must have a defined size -->
 <div id="flags">
-	<button id="button_usa" value="us">
+	<input type="radio" name="country" id="button_usa" value="us">
 		<img src="img/us.png" class="flagImage"/><br>the U.S.A.
-	</button>
-	<button id="button_brazil" value="br">
+	</input>
+	<input type="radio" name="country" id="button_brazil" value="br">
 		<img src="./img/br.png" class="flagImage"/><br>Brazil
-	</button>
-	<button id="button_gb" value="gb">
+	</input>
+	<input type="radio" name="country" id="button_gb" value="gb">
 		<img src="./img/gb.png" class="flagImage"/><br>the U.K.
-	</button>
-	<button id="button_france" value="fr">
+	</input>
+	<input type="radio" name="country" id="button_france" value="fr">
 		<img src="./img/fr.png" class="flagImage"/><br>France
-	</button>
-	<button id="button_germany" value="de">
+	</input>
+	<input type="radio" name="country" id="button_germany" value="de">
 		<img src="./img/de.png" class="flagImage"/><br>Germany
-	</button>
-	<button id="button_italy" value="it">
+	</input>
+	<input type="radio" name="country" id="button_italy" value="it">
 		<img src="./img/it.png" class="flagImage"/><br>Italy
-	</button>
-	<button id="button_japan" value="jp">
+	</input>
+	<input type="radio" name="country" id="button_japan" value="jp">
 		<img src="img/jp.png" class="flagImage"/><br>Japan
-	</button>
-	<button id="button_korea" value="kr">
+	</input>
+	<input type="radio" name="country" id="button_korea" value="kr">
 		<img src="./img/kr.png" class="flagImage"/><br>Korea
-	</button>
-	<button id="button_china" value="cn">
+	</radio>
+	<input type="radio" id="button_china" value="cn">
 		<img src="./img/cn.png" class="flagImage"/><br>China
-	</button>
-	<button id="button_india" value="in">
+	</input>
+	<input type="radio" name="country" id="button_india" value="in">
 		<img src="./img/in.png" class="flagImage"/><br>India
-	</button>
-	<button id="button_switzerland" value="ch">
+	</input>
+	<input type="radio" id="button_switzerland" value="ch">
 		<img src="./img/ch.png" class="flagImage"/><br>Switzerland
-	</button>
-	<button id="button_australia" value="au">
+	</input>
+	<input type="radio" id="button_australia" value="au">
 		<img src="./img/au.png" class="flagImage"/><br>Australia
-	</button>
-	<button id="button_egypt" value="eg">
+	</input>
+	<input type="radio" id="button_egypt" value="eg">
 		<img src="./img/eg.png" class="flagImage"/><br>Egypt
-	</button>
-	<button id="button_kenya" value="ke">
+	</input>
+	<input type="radio" id="button_kenya" value="ke">
 		<img src="./img/ke.png" class="flagImage"/><br>Kenya
-	</button>
+	</input>
 </div>
 <div id="viewer" style="width: 100vw; height: 100vh;" class="viewer"></div>
 
@@ -95,7 +98,7 @@ const viewer = new Viewer({
 });
 
 let viewers = {};
-Array.from(document.getElementsByTagName("button")).forEach(function (b) {
+Array.from(document.getElementsByTagName("input")).forEach(function (b) {
 	console.log(b.value);
 	b.addEventListener("click", function (ev) {
 		console.log(viewer.config);
